@@ -1,0 +1,12 @@
+2017-03-19 21:09:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LC_DEFINITIONS" not found; SQL statement:
+select 1 from LC_DEFINITIONS [42102-191]
+2017-03-20 09:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LC_DEFINITIONS" not found; SQL statement:
+select 1 from LC_DEFINITIONS [42102-191]
+2017-03-20 11:05:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LC_DEFINITIONS" not found; SQL statement:
+select 1 from LC_DEFINITIONS [42102-191]
+2017-03-20 11:33:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LC_DEFINITIONS" not found; SQL statement:
+select 1 from LC_DEFINITIONS [42102-191]

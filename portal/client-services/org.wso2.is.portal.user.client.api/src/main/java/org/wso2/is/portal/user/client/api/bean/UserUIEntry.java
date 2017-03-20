@@ -15,7 +15,6 @@
  */
 package org.wso2.is.portal.user.client.api.bean;
 
-import org.wso2.carbon.identity.mgt.Group;
 import org.wso2.carbon.identity.mgt.claim.Claim;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class UserUIEntry {
 
     private String state;
 
-    private List<Group> groups;
+    private List<String> groups;
 
     private List<Claim> claims;
 
@@ -56,11 +55,11 @@ public class UserUIEntry {
         this.userUniqueId = userUniqueId;
     }
 
-    public List<Group> getGroups() {
+    public List<String> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<String> groups) {
         this.groups = groups;
     }
 

@@ -23,25 +23,27 @@ function onGet(env) {
 }
 
 function onPost(env) {
-    var session, action, claimUri, claimValue, domainName, recordLimit;
+    var session, action, claimUri, claimValue, domainName, recordLimit, offset;
     session = getSession();
     action = env.request.formParams['action'];
-    if (action === "filter-list") {
-        claimUri = env.request.formParams["claim-uri"];
-        claimValue = env.request.formParams["claim-filter"];
-        domainName = env.request.formParams["domain-name"];
-        recordLimit = env.request.formParams["record-limit"];
-        sendToClient("selectedClaim", claimUri);
-        sendToClient("selectedDomain", domainName);
-        if(!recordLimit) {
-            recordLimit = -1
-        }
-        var userList = getFilteredList(0, recordLimit, claimUri, claimValue, domainName);
-        var claimProfile = getUserListProfile();
-        var domains = getDomainNames(env);
-        var primaryDomainName = getPrimaryDomainName(env);
-        return {claimProfile: claimProfile, domains: domains, claimValue: claimValue};
+    claimUri = env.request.formParams["claim-uri"];
+    claimValue = env.request.formParams["claim-filter"];
+    domainName = env.request.formParams["domain-name"];
+    recordLimit = parseInt(env.request.formParams["length-value"]);
+    offset = parseInt(env.request.formParams["offset-value"]);
+    sendToClient("selectedClaim", claimUri);
+    sendToClient("selectedDomain", domainName);
+    sendToClient("action", action);
+    sendToClient("offset", offset);
+    sendToClient("recordLimit", recordLimit);
+    if(!recordLimit) {
+        recordLimit = -1
     }
+    var userList = getFilteredList(offset, recordLimit, claimUri, claimValue, domainName);
+    var claimProfile = getUserListProfile();
+    var domains = getDomainNames(env);
+    var primaryDomainName = getPrimaryDomainName(env);
+    return {claimProfile: claimProfile, domains: domains, claimValue: claimValue};
 }
 
 function getFilteredList(offset, length, claimURI, claimValue, domainName){

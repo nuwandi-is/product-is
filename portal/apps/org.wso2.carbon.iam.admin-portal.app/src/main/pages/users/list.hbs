@@ -1,6 +1,6 @@
 {{secured}}
 {{layout "privilege"}}
-{{fragment "org.wso2.carbon.uuf.common.foundation.ui.data-tables"}}
+{{fragment "data-tables"}}
 {{favicon "images/favicon.png" type="image/png"}}
 {{css "css/admin-portal.css"}}
 {{js "js/list.js"}}
@@ -36,7 +36,7 @@
         </div>
         <form class="form-horizontal" method="post" id="filterListForm">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-                <input type="hidden" name="action" value="filter-list">
+                <input type="hidden" id="action" name="action" value="filter-list">
                 <input type="hidden" id="claim-uri" name="claim-uri" value="">
                 <input type="hidden" id="domain-name" name="domain-name" value="">
                 <div class="row">
@@ -51,8 +51,6 @@
                             <th class="no-sort">{{i18n "list.actions"}}</th>
                         </tr>
                         <tr class="filter-row-custom">
-                            <th data-for="Type"></th>
-                            <th data-for="Domain" class="text-filter"></th>
                             <th class="select-filter">
                                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                                     <select class="form-control" id="claimSelector" onChange="getClaimUri()">
@@ -68,6 +66,8 @@
                                     {{/if}}
                                 </div>
                             </th>
+                            <th data-for="Start"><input type="number" id="offset-value" name="offset-value" class="short-input" value="0" /></th>
+                            <th data-for="Maximum Records"><input type="number" id="length-value" name="length-value" class="short-input" value="500" /></th>
                             <th data-for="Office" class="select-filter"></th>
                             <th data-for="Age" class="select-filter"></th>
                             <th>
@@ -83,17 +83,44 @@
                                 </button>
                             </th>
                         </tr>
-                        <tr class="bulk-action-row">
+                        <tr class="bulk-action-row" id="bulk-row">
                             <th colspan="8">
 
                                 <ul class="tiles">
                                     <li class="square">
-                                        <a class="btn square-element" data-click-event="delete-selected-rows">
+                                        <a class="btn square-element bulk-element" data-click-event="delete-selected-rows">
                                 <span class="icon fw-stack">
                                     <i class="fw fw-ring fw-stack-2x"></i>
                                     <i class="fw fw-delete fw-stack-1x"></i>
                                 </span>
                                             {{i18n "bulk.action.delete"}}
+                                        </a>
+                                    </li>
+                                    <li class="square">
+                                        <a class="btn square-element bulk-element" data-click-event="lock-selected-rows">
+                                <span class="icon fw-stack">
+                                    <i class="fw fw-ring fw-stack-2x"></i>
+                                    <i class="fw fw-lock fw-stack-1x"></i>
+                                </span>
+                                            {{i18n "bulk.action.lock"}}
+                                        </a>
+                                    </li>
+                                    <li class="square">
+                                        <a class="btn square-element bulk-element" data-click-event="disable-selected-rows">
+                                <span class="icon fw-stack">
+                                    <i class="fw fw-ring fw-stack-2x"></i>
+                                    <i class="fw fw-disable fw-stack-1x"></i>
+                                </span>
+                                            {{i18n "bulk.action.disable"}}
+                                        </a>
+                                    </li>
+                                    <li class="square">
+                                        <a class="btn square-element bulk-element" data-click-event="activate-selected-rows">
+                                <span class="icon fw-stack">
+                                    <i class="fw fw-ring fw-stack-2x"></i>
+                                    <i class="fw fw-activate fw-stack-1x"></i>
+                                </span>
+                                            {{i18n "bulk.action.activate"}}
                                         </a>
                                     </li>
                                 </ul>

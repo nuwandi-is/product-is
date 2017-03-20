@@ -573,3 +573,7 @@ display: none; }
   .table.list-table > thead > tr.filter-row-custom td,
   .table.list-table > thead > tr.filter-row-custom th {
     display: block; } }
+
+.short-input {
+    max-width: 60px;
+}
