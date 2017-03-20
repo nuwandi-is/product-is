@@ -35,6 +35,7 @@ public class UserMgtClientServiceImpl implements UserMgtClientService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserMgtClientServiceImpl.class);
     private static final String USERNAME_CLAIM = "http://wso2.org/claims/username";
+    private static final String GROUPNAME_CLAIM = "http://wso2.org/claims/groupname";
     private static final int MAX_RECORD_LENGTH = 500;
 
     private RealmService realmService;
@@ -100,12 +101,25 @@ public class UserMgtClientServiceImpl implements UserMgtClientService {
         metaClaim.setClaimUri(USERNAME_CLAIM);
         metaClaims.add(metaClaim);
 
+        List<MetaClaim> groupMetaClaims = new ArrayList<>();
+        MetaClaim groupMetaClaim = new MetaClaim();
+        groupMetaClaim.setClaimUri(GROUPNAME_CLAIM);
+        groupMetaClaims.add(groupMetaClaim);
+
         for (User user : users) {
             List<Group> groups;
             List<Claim> userId;
+            List<Claim> groupId;
+            List<String> groupNames = new ArrayList<>();
             String username = null;
             try {
                 groups = user.getGroups();
+                for (Group group : groups) {
+                    groupId = group.getClaims(groupMetaClaims);
+                    if (!groupId.isEmpty()) {
+                        groupNames.add(groupId.get(0).getValue());
+                    }
+                }
                 //TODO:implement getUsername() method in User class and use it to retrieve username
                 userId = user.getClaims(metaClaims);
                 if (!userId.isEmpty()) {
@@ -122,7 +136,7 @@ public class UserMgtClientServiceImpl implements UserMgtClientService {
             listEntry.setDomainName(user.getDomainName());
             listEntry.setUserUniqueId(user.getUniqueUserId());
             listEntry.setState(user.getState());
-            listEntry.setGroups(groups);
+            listEntry.setGroups(groupNames);
             userList.add(listEntry);
 
         }

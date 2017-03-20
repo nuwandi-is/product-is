@@ -85,7 +85,7 @@ $(document).ready(function() {
         var button = $("button[data-click-event='toggle-select']");
         $(button).closest('li').siblings('.select-all-btn').show();
         $(button).addClass("active").html('Cancel');
-        $('.filter-row-custom').hide();
+        $('#filter-btn').prop('disabled', true);
     }
 
     if (action === "select-all") {
@@ -97,7 +97,7 @@ $(document).ready(function() {
         $('#users-sample').addClass("table-selectable");
         $(button).html('Cancel');
         $(button).closest('li').siblings('.deselect-all-btn').show();
-        $('.filter-row-custom').hide();
+        $('#filter-btn').prop('disabled', true);
         $('.bulk-element').show();
     }
 

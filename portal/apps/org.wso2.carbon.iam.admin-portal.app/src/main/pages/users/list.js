@@ -95,13 +95,14 @@ function getUserListProfile () {
 
 function buildJSONArray(userList) {
     var userArray = [];
-    var claimArray = [];
+    var groups = [];
     for (var i in userList) {
         var item = userList[i];
+        groups = item.getGroups();
         userArray.push({
             "Username" : item.getUserId(),
             "Status" : item.getState(),
-            "Groups" : "",
+            "Groups" : groups,
             "Roles" : "",
             "UniqueId" : item.getUserUniqueId(),
             "Domain" : item.getDomainName(),
