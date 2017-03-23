@@ -1,6 +1,6 @@
 {{secured}}
 {{layout "privilege"}}
-{{fragment "data-tables"}}
+{{fragment "org.wso2.carbon.uuf.common.foundation.ui.data-tables"}}
 {{favicon "images/favicon.png" type="image/png"}}
 {{css "css/admin-portal.css"}}
 {{js "js/list.js"}}
@@ -148,6 +148,24 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <!-- modal -->
+                        <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDemo">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content clearfix">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fw fw-cancel"></i></button>
+                                        <h3 class="modal-title" id="groupModalLabel">{{i18n "group.modal.heading"}}</h3>
+                                    </div>
+                                    <div class="modal-body add-margin-top-2x add-margin-bottom-2x">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /modal -->
                         <!-- Handlebars Template Appends Here -->
                         </tbody>
                     </table>

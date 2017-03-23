@@ -120,7 +120,6 @@ public class UserMgtClientServiceImpl implements UserMgtClientService {
                         groupNames.add(groupId.get(0).getValue());
                     }
                 }
-                //TODO:implement getUsername() method in User class and use it to retrieve username
                 userId = user.getClaims(metaClaims);
                 if (!userId.isEmpty()) {
                     username = userId.get(0).getValue();
@@ -130,7 +129,6 @@ public class UserMgtClientServiceImpl implements UserMgtClientService {
                 LOGGER.error(error, e);
                 throw new UserPortalUIException(error);
             }
-
             UserUIEntry listEntry = new UserUIEntry();
             listEntry.setUserId(username);
             listEntry.setDomainName(user.getDomainName());
